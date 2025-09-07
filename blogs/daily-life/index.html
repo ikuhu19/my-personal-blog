@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background: #fff0f5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Pastel Grid Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: linear-gradient(90deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px),
+                    linear-gradient(180deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: -1;
+}
+
+/* Article / Blog Section Styling */
+.my-journey {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.my-journey section {
+  background: #ffe6f0;
+  padding: 30px 25px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeIn 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+.my-journey section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Headings */
+.my-journey h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: #d63384;
+  margin-bottom: 15px;
+}
+
+/* Paragraphs */
+.my-journey p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Lists */
+.my-journey ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.my-journey li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Emphasis */
+.my-journey em {
+  font-style: italic;
+  color: #b02a6e;
+}
+
+/* Footer Styling */
+.my-journey footer {
+  text-align: center;
+  background: #ffddee;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-top: 30px;
+}
+
+.my-journey footer p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d63384;
+  margin: 5px 0;
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .my-journey {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .my-journey h2 {
+    font-size: 1.6rem;
+  }
+
+  .my-journey p,
+  .my-journey li {
+    font-size: 1rem;
+  }
+}
+</style>
+
+<body>
+    <article class="my-journey">
+
+  <section>
+    <h2>🌈 Life in Moods, Not Timetables</h2>
+    <p>Some people have timetables. I have moods. I’ve never made one in my life – not because I’m careless, but because I know myself. If I vibe with it, I’ll sit for hours until it’s done. If not… well, it can sit there forever. For other necessary things we have deadlines. 💀</p>
+    
+    <p>One day, I’m all sunshine – feeling blissful, counting blessings, grateful for the amazing people around me. The next, I’m questioning why basic decency isn’t common sense and why kids sometimes seem to have higher IQ than adults. Then, as usual, I end up laughing at myself for even caring so much (tsk tsk 😪) Lesson learned… until next time.</p>
+    
+    <p>Eighteen years on Earth (nineteen ongoing 💅) and I swear I’ve already met the full catalogue of people – not just in college but literally everywhere. Some make me smile, some test my patience, but all of them? They make life way more entertaining. Mind you, all sometimes you irritate me till my soul says stop 💢. Although I'm happy that I am not very nosy (Am I? 😗).</p>
+  </section>
+
+  <section>
+    <h2>🛋 My Detox Strategy</h2>
+    <p>Now back to my favourite task? Being unproductive for a whole day (with valid reasons 😩). Why? Because the moment something threatens my peace or starts draining my energy, I instantly start analysing how to detox from it and how to adjust around it for better peace of mind.</p>
+    
+    <p>People say, “Just ignore it.” My friends say that too. But deep down? It’s not that simple. Things affect me. So what do I do in such situations? Simple – I find a solution. Even if it feels like there’s nothing I can do. I take my time, decide my outcome, and once I find my path, it’s over. Next time someone mentions it – situation, person, or problem – I feel nothing. Hands off. It works, trust me. Don’t ignore. Decide.</p>
+  </section>
+
+  <section>
+    <h2>🍳 Detox Day Vibes</h2>
+    <p>And when I say detox day, ohhh it’s a whole vibeeeeeee. Activities include:</p>
+    <ul>
+      <li>Cooking (even if it’s just Maggi 😋)</li>
+      <li>Sleeping (or just rolling around 🐼)</li>
+      <li>Binge-watching Netflix</li>
+      <li>Going out for street food</li>
+      <li>Stuck at home with lack of Wi-Fi? Tsk tsk tsk. I switch to TV (Suryavansham is infinite fun 😜), chat with Mom (mostly to irritate her 😈), or randomly start cleaning fans – don’t ask how I reached this point, it just happened 😵</li>
+      <li>Singing like nobody cares (nobody really cares 😏) top of my lungs</li>
+      <li>Drawing, skating, or playing badminton – basically using all props available at home</li>
+    </ul>
+
+    <p>But the most important and sacred detox ritual? Eating. Always eating (sprite, burger, rasmalai 😌) 🍰🍦🍩🍔.</p>
+  </section>
+
+  <section>
+    <h2>💭 Thoughts on Chaos and Life</h2>
+    <p>What else to rant about? Everyday life is chaotic at the same time a blessing and I’m just here to live, laugh, and keep going with optimistic vibes. Obviously, when I'm happy I find the world around me happy and tolerable 😅</p>
+  </section>
+
+  <footer>
+    <p>Until next Chaos,</p>
+    <p>- Kuhu 💋</p>
+  </footer>
+
+</article>
+
+</body>
+</html>
