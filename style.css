@@ -223,7 +223,7 @@ header h1 {
 
 .category-title {
   font-family: 'Dancing Script', cursive;
-  font-size: 1.8rem;
+  font-size: 2.4rem;  /* prominent title */
   font-weight: 700;
   color: #b02a6e;
   margin-bottom: 5px;
@@ -234,6 +234,7 @@ header h1 {
   font-weight: 600;
   color: #d63384;
   margin-bottom: 15px;
+  font-style: italic;  /* subtitle in italic */
 }
 
 .category-desc {
@@ -241,6 +242,7 @@ header h1 {
   line-height: 1.5;
   color: #333;
   margin-bottom: 20px;
+  font-family: 'Cursive', 'Brush Script MT', 'Segoe Script', cursive;  /* soft cursive font */
 }
 
 .category-card .btn {
@@ -258,6 +260,7 @@ header h1 {
   background: #b02a6e;
   transform: scale(1.05);
 }
+
 
 /* ===================== Blog List Cards ===================== */
 .blog-list {
@@ -418,4 +421,73 @@ footer {
   .hero h2 { font-size: 2rem; }
   .hero p { font-size: 1rem; }
   header h1 { font-size: 2.5rem; }
+}
+.parallax {
+  background-image: url('your-image.jpg'); /* replace with your own image */
+  min-height: 400px; /* height of parallax section */
+  
+  background-attachment: fixed;  /* key for parallax */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hero {
+  padding: 40px 20px;
+}
+
+.hero-content {
+  display: flex;             /* side by side layout */
+  align-items: flex-start;   /* align top of text and robot */
+  justify-content: space-between;
+  flex-wrap: wrap;           /* makes responsive on small screens */
+}
+
+.hero-text {
+  flex: 1 1 60%;             /* text takes 60% width */
+  margin-right: 20px;
+}
+
+.hero-text h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+.hero-robot {
+  flex: 0 0 35%;             /* robot takes 35% width */
+  max-width: 250px;          /* optional max width */
+  height: 250px;
+}
+
+.hero-robot iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+/* Fairy dust trail */
+.cursor-trail {
+  position: fixed;
+  pointer-events: none;       /* doesn’t block clicks */
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  z-index: 9999;
+  background: radial-gradient(circle, rgba(255, 230, 240, 0.9), rgba(255, 255, 255, 0));
+  mix-blend-mode: screen;
+  animation: sparkleFade 1s forwards;
+}
+
+@keyframes sparkleFade {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2) rotate(360deg);
+  }
 }

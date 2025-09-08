@@ -164,26 +164,80 @@
     }
   </style>
 </head>
-<body>
+<script>
+(function() {
+  const colors = ['#ffe6f0', '#ffffff', '#ffd700']; // pink, white, gold
+
+  document.body.style.cursor = 'default'; // ensures cursor visible
+
+  document.addEventListener('mousemove', function(e) {
+    // create 2-3 sparkles per move
+    for(let i=0; i<3; i++){
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('cursor-trail');
+
+      // position with random offset
+      const offsetX = Math.random() * 20 - 10;
+      const offsetY = Math.random() * 20 - 10;
+      sparkle.style.left = (e.clientX + offsetX) + 'px';
+      sparkle.style.top = (e.clientY + offsetY) + 'px';
+
+      // random color
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      sparkle.style.background = `radial-gradient(circle, ${color}CC, rgba(255,255,255,0))`;
+
+      document.body.appendChild(sparkle);
+
+      // remove after animation
+      sparkle.addEventListener('animationend', () => sparkle.remove());
+    }
+  });
+})();
+</script>
+
+
+</body>
 
 <!-- Header -->
-<header>
+<header class="header-container">
   <h1>Pieces of Kuhu</h1>
   <form class="search-form" onsubmit="searchBlogs(event)">
     <input type="text" id="search-input" placeholder="Search blogs...">
     <button type="submit">🔍</button>
   </form>
+  <p id="no-result" style="display:none; color:red; font-weight:bold; text-align:center; margin-top:10px;">
+    No result found
+  </p>
+
+  
+  </div>
 </header>
+
 
 <!-- Hero Section -->
 <section class="hero">
-  <h2 style="font-size: 3em;">Welcome to Pieces of Kuhu</h2>
-  <p>It’s a collection of reflections, healing moments, and honest takes on daily life.
-     Here, you’ll find words that speak unfiltered, stories that connect, 
-     and thoughts that go deeper than the surface.
-      My goal is simple: to create a space where curiosity meets clarity, 
-      where you pause, breathe, and see life through a different lens.</p>
+  <div class="hero-content">
+    <div class="hero-text">
+      <h2 style="font-size: 3em;">Welcome to Pieces of Kuhu</h2>
+      <p>
+        It’s a collection of reflections, 
+        healing moments, and honest takes on daily life.
+        Here, you’ll find words that speak unfiltered, stories that connect, 
+        and thoughts that go deeper than the surface.
+        My goal is simple: to create a space where curiosity meets clarity, 
+        where you pause, breathe, and see life through a different lens.
+      </p>
+    </div>
+
+    <!-- Floating Robot on Right -->
+    <div class="hero-robot">
+      <iframe src="https://my.spline.design/genkubgreetingrobot-DbBKK8wJH6LfsqRy3CfVdvgD/" 
+              frameborder="0"></iframe>
+    </div>
+  </div>
 </section>
+
+
 
 <!-- My Journey Section -->
 <section  class="my-journey">
@@ -196,6 +250,9 @@
     the calm, and everything in between.
   </p>
 </section>
+<!-- 🌸 Parallax Section -->
+<section class="parallax"></section>
+
 
 <!-- Blog Categories Section -->
 <section class="blog-categories-section">
@@ -304,6 +361,7 @@ function searchBlogs(event) {
   event.preventDefault();
   const query = document.getElementById('search-input').value.toLowerCase();
   const categories = document.querySelectorAll('.category-card');
+  let anyMatch = false; // ✅ keep track of matches
 
   categories.forEach(category => {
     const blogs = category.querySelectorAll('ul.blog-list li');
@@ -315,6 +373,7 @@ function searchBlogs(event) {
       if (title.includes(query) || desc.includes(query)) {
         blog.style.display = 'block';
         categoryHasMatch = true;
+        anyMatch = true; // ✅ found at least one match
       } else {
         blog.style.display = 'none';
       }
@@ -322,8 +381,13 @@ function searchBlogs(event) {
 
     category.style.display = categoryHasMatch ? 'block' : 'none';
   });
+
+  // ✅ Show or hide "No result found"
+  const noResultMsg = document.getElementById('no-result');
+  noResultMsg.style.display = anyMatch ? 'none' : 'block';
 }
 </script>
+
 
 </body>
 </html>
