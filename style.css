@@ -1,3 +1,6 @@
+/* ===================== Bootstrap Integration ===================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@400;700&display=swap');
+
 /* ===================== General Styles ===================== */
 body {
   font-family: 'Poppins', sans-serif;
@@ -13,8 +16,10 @@ body {
 body::before {
   content: "";
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(90deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px),
                     linear-gradient(180deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px);
   background-size: 60px 60px;
@@ -32,29 +37,27 @@ body::before {
 header {
   position: relative;
   display: flex;
-  justify-content: center;  /* centers the title */
-  align-items: center;      /* vertical alignment */
-  padding: 50px 20px 20px 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 15px 20px 15px;
   z-index: 2;
 }
 
-/* Make sure the title stays centered */
 header h1 {
   margin: 0;
   font-size: 4em;
   font-family: 'Dancing Script', cursive;
   color: #d63384;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-  flex: 1;                 /* pushes the title to take center space */
-  text-align: center;      /* ensures text itself is centered */
+  text-align: center;
 }
 
-/* Search bar still on top-right */
 .header-nav {
   position: absolute;
   top: 20px;
-  right: 40px;
+  right: 15px;
 }
+
 .search-form {
   display: flex;
   align-items: center;
@@ -83,7 +86,7 @@ header h1 {
 /* ===================== Hero Section ===================== */
 .hero {
   background: linear-gradient(135deg, #ffe6f0, #f8e0ff);
-  padding: 60px 20px;
+  padding: 60px 15px;
   text-align: center;
   border-radius: 15px;
   margin: 30px auto;
@@ -93,21 +96,43 @@ header h1 {
   opacity: 0;
 }
 
-.hero h2 {
+.hero-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1 1 60%;
+  padding-right: 20px;
+}
+
+.hero-text h2 {
   font-size: 3rem;
   font-family: 'Dancing Script', cursive;
   margin-bottom: 15px;
   color: #b02a6e;
 }
 
-.hero p {
+.hero-text p {
   font-size: 1.3rem;
   color: #6b1a4e;
-  max-width: 700px;
   margin: 0 auto 20px auto;
 }
 
-/* Hero divider */
+.hero-robot {
+  flex: 0 0 35%;
+  max-width: 250px;
+  height: 250px;
+}
+
+.hero-robot iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
 .divider {
   height: 4px;
   width: 150px;
@@ -116,15 +141,30 @@ header h1 {
   border-radius: 3px;
 }
 
+/* ===================== Parallax Section ===================== */
+.parallax {
+  background-image: url('your-image.jpg'); /* Replace with your own image */
+  min-height: 400px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+
+/* Smooth parallax for modern browsers, fallback for mobile */
+@supports (-webkit-overflow-scrolling: touch) {
+  .parallax {
+    background-attachment: scroll; /* Fallback for mobile browsers */
+  }
+}
+
 /* ===================== Profile Section ===================== */
 .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
   background: #fff0f5;
-  padding: 40px 20px;
-  margin: 20px;
+  padding: 40px 15px;
+  margin: 20px auto;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -159,7 +199,7 @@ header h1 {
 /* ===================== My Journey Section ===================== */
 .my-journey {
   background: #fff0f5;
-  padding: 40px 20px;
+  padding: 40px 15px;
   margin: 20px auto;
   border-radius: 12px;
   text-align: center;
@@ -185,13 +225,12 @@ header h1 {
 /* ===================== Blog Categories Section ===================== */
 .blog-categories-section {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px 15px;
   margin: 20px auto;
   max-width: 1000px;
 }
 
 .blog-categories-section h2 {
-  text-align: center;
   font-family: 'Dancing Script', cursive;
   font-size: 2.5rem;
   font-weight: 700;
@@ -210,10 +249,11 @@ header h1 {
   background: #fff0f5;
   padding: 30px 25px;
   border-radius: 15px;
-  width: 300px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 300px;
 }
 
 .category-card:hover {
@@ -223,7 +263,7 @@ header h1 {
 
 .category-title {
   font-family: 'Dancing Script', cursive;
-  font-size: 2.4rem;  /* prominent title */
+  font-size: 2.4rem;
   font-weight: 700;
   color: #b02a6e;
   margin-bottom: 5px;
@@ -234,7 +274,7 @@ header h1 {
   font-weight: 600;
   color: #d63384;
   margin-bottom: 15px;
-  font-style: italic;  /* subtitle in italic */
+  font-style: italic;
 }
 
 .category-desc {
@@ -242,7 +282,7 @@ header h1 {
   line-height: 1.5;
   color: #333;
   margin-bottom: 20px;
-  font-family: 'Cursive', 'Brush Script MT', 'Segoe Script', cursive;  /* soft cursive font */
+  font-family: 'Cursive', 'Brush Script MT', 'Segoe Script', cursive;
 }
 
 .category-card .btn {
@@ -260,7 +300,6 @@ header h1 {
   background: #b02a6e;
   transform: scale(1.05);
 }
-
 
 /* ===================== Blog List Cards ===================== */
 .blog-list {
@@ -307,21 +346,17 @@ header h1 {
 /* ===================== Footer ===================== */
 .footer-section {
   background: #fff0f5;
-  padding: 60px 40px;
+  padding: 60px 15px;
   text-align: center;
   border-radius: 0;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;   /* neeche neeche blocks */
-  align-items: center;
-  gap: 60px;
-  width: 100%;              /* full width footer */
+  width: 100%;
   margin: 0;
 }
 
 .footer-block {
   width: 100%;
-  max-width: 800px;         /* thoda bada */
+  max-width: 800px;
   padding-bottom: 30px;
   border-bottom: 1px solid #f3cce0;
 }
@@ -408,70 +443,10 @@ footer {
 /* Fade In Animation */
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* ===================== Responsive ===================== */
-@media (max-width: 1000px) {
-  .blog-categories { flex-direction: column; align-items: center; }
-  .category-card { width: 90%; max-width: 400px; }
-  header h1 { font-size: 3em; }
-  .hero h2 { font-size: 2.5rem; }
-  .hero p { font-size: 1.1rem; }
-}
-
-@media (max-width: 768px) {
-  .hero h2 { font-size: 2rem; }
-  .hero p { font-size: 1rem; }
-  header h1 { font-size: 2.5rem; }
-}
-.parallax {
-  background-image: url('your-image.jpg'); /* replace with your own image */
-  min-height: 400px; /* height of parallax section */
-  
-  background-attachment: fixed;  /* key for parallax */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.hero {
-  padding: 40px 20px;
-}
-
-.hero-content {
-  display: flex;             /* side by side layout */
-  align-items: flex-start;   /* align top of text and robot */
-  justify-content: space-between;
-  flex-wrap: wrap;           /* makes responsive on small screens */
-}
-
-.hero-text {
-  flex: 1 1 60%;             /* text takes 60% width */
-  margin-right: 20px;
-}
-
-.hero-text h2 {
-  font-size: 3em;
-  margin-bottom: 20px;
-}
-
-.hero-text p {
-  font-size: 1.2em;
-  line-height: 1.5;
-}
-
-.hero-robot {
-  flex: 0 0 35%;             /* robot takes 35% width */
-  max-width: 250px;          /* optional max width */
-  height: 250px;
-}
-
-.hero-robot iframe {
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-}
 /* Fairy dust trail */
 .cursor-trail {
   position: fixed;
-  pointer-events: none;       /* doesn’t block clicks */
+  pointer-events: none;
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -490,4 +465,29 @@ footer {
     opacity: 0;
     transform: scale(2) rotate(360deg);
   }
+}
+
+/* ===================== Responsive with Bootstrap Breakpoints ===================== */
+@media (max-width: 992px) {
+  header h1 { font-size: 3.5em; }
+  .hero-text h2 { font-size: 2.5rem; }
+  .hero-text p { font-size: 1.2rem; }
+  .hero-robot { flex: 0 0 100%; max-width: 200px; margin: 20px auto; }
+  .blog-categories { flex-direction: column; align-items: center; }
+  .category-card { max-width: 400px; }
+}
+
+@media (max-width: 768px) {
+  header h1 { font-size: 2.8em; }
+  .hero-text h2 { font-size: 2rem; }
+  .hero-text p { font-size: 1rem; }
+  .search-form input { width: 150px; }
+}
+
+@media (max-width: 576px) {
+  header h1 { font-size: 2.2em; }
+  .hero-text h2 { font-size: 1.8rem; }
+  .hero-text p { font-size: 0.9rem; }
+  .profile-pic { width: 120px; height: 120px; }
+  .intro-text { font-size: 1.8rem; }
 }

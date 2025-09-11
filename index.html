@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kuhu's personal blog sharing stories on lifestyle, travel, and more.">
+  <meta name="keywords" content="blog, lifestyle, travel, personal stories, Kuhu">
+  <meta name="author" content="Kuhu">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Pieces of Kuhu">
+  <meta property="og:description" content="Kuhu's personal blog sharing stories on lifestyle, travel, and more.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80">
+  <meta property="og:url" content="https://piecesofkuhu.com">
   <title>Pieces of Kuhu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -12,6 +25,58 @@
       background: #fff0f5;
       color: #333;
       overflow-x: hidden;
+      scroll-behavior: smooth; /* Enable smooth scrolling */
+    }
+    /* Parallax Background for Site-Wide Effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(90deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px),
+                        linear-gradient(180deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px);
+      background-size: 60px 60px;
+      background-attachment: fixed; /* Parallax effect */
+      z-index: -1;
+      animation: gradientShift 60s linear infinite;
+    }
+    /* Fallback for mobile devices */
+    @supports (-webkit-overflow-scrolling: touch) {
+      body::before {
+        background-attachment: scroll;
+      }
+    }
+    /* Fairy Dust Cursor Trail */
+    .cursor-trail {
+      position: fixed;
+      pointer-events: none;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      z-index: 9999;
+      background: radial-gradient(circle, rgba(255, 230, 240, 0.9), rgba(255, 255, 255, 0));
+      mix-blend-mode: screen;
+      animation: sparkleFade 1s forwards;
+    }
+    @keyframes sparkleFade {
+      0% { opacity: 1; transform: scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: scale(2) rotate(360deg); }
+    }
+    /* Parallax Section Class for Specific Sections */
+    .parallax-section {
+      position: relative;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      z-index: 1;
+    }
+    @supports (-webkit-overflow-scrolling: touch) {
+      .parallax-section {
+        background-attachment: scroll;
+      }
     }
     h1, h2, h3 {
       font-family: 'Dancing Script', cursive;
@@ -24,7 +89,6 @@
       text-decoration: none;
       color: #d63384;
     }
-
     /* Header */
     header {
       display: flex;
@@ -69,7 +133,23 @@
     .search-form button:hover {
       transform: scale(1.1);
     }
-
+    /* Navigation */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      font-family: 'Poppins', sans-serif;
+      color: #d63384;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #6b4f4f;
+    }
     /* Hero Section */
     .hero {
       text-align: center;
@@ -82,7 +162,14 @@
       font-size: 2.5em;
       margin-bottom: 10px;
     }
-
+    .hero-robot {
+      max-width: 300px;
+      margin: 20px auto;
+    }
+    .hero-robot iframe {
+      width: 100%;
+      height: 300px;
+    }
     /* Journey Section */
     .my-journey {
       padding: 40px 20px;
@@ -90,7 +177,6 @@
       max-width: 800px;
       margin: 0 auto;
     }
-
     /* Blog Categories */
     .blog-categories-section {
       padding: 50px 20px;
@@ -142,7 +228,6 @@
       font-size: 0.9em;
       margin-top: 5px;
     }
-
     /* Footer */
     .footer-section {
       background: #ffd6e0;
@@ -156,241 +241,302 @@
       width: 250px;
       text-align: center;
     }
+    .footer-block a i {
+      font-size: 1.5em;
+      margin: 0 10px;
+    }
     footer {
       text-align: center;
       padding: 15px;
       background: #d63384;
       color: #fff;
     }
+    /* Animations */
+    @keyframes gradientShift {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 600px 600px, 600px 600px; }
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      header h1 {
+        font-size: 1.8em;
+      }
+      .search-form input {
+        width: 150px;
+      }
+      .hero h2 {
+        font-size: 2em;
+      }
+      .category-card {
+        width: 100%;
+        max-width: 350px;
+      }
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-block {
+        width: 100%;
+        max-width: 300px;
+      }
+      .hero-robot {
+        max-width: 200px;
+      }
+      .hero-robot iframe {
+        height: 200px;
+      }
+    }
   </style>
 </head>
-<script>
-(function() {
-  const colors = ['#ffe6f0', '#ffffff', '#ffd700']; // pink, white, gold
+<body>
+  <script>
+  (function() {
+    const colors = ['#ffe6f0', '#ffffff', '#ffd700']; // pink, white, gold
 
-  document.body.style.cursor = 'default'; // ensures cursor visible
+    document.body.style.cursor = 'default'; // Ensures cursor visible
 
-  document.addEventListener('mousemove', function(e) {
-    // create 2-3 sparkles per move
-    for(let i=0; i<3; i++){
-      const sparkle = document.createElement('div');
-      sparkle.classList.add('cursor-trail');
-
-      // position with random offset
-      const offsetX = Math.random() * 20 - 10;
-      const offsetY = Math.random() * 20 - 10;
-      sparkle.style.left = (e.clientX + offsetX) + 'px';
-      sparkle.style.top = (e.clientY + offsetY) + 'px';
-
-      // random color
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      sparkle.style.background = `radial-gradient(circle, ${color}CC, rgba(255,255,255,0))`;
-
-      document.body.appendChild(sparkle);
-
-      // remove after animation
-      sparkle.addEventListener('animationend', () => sparkle.remove());
-    }
-  });
-})();
-</script>
-
-
-</body>
-
-<!-- Header -->
-<header class="header-container">
-  <h1>Pieces of Kuhu</h1>
-  <form class="search-form" onsubmit="searchBlogs(event)">
-    <input type="text" id="search-input" placeholder="Search blogs...">
-    <button type="submit">🔍</button>
-  </form>
-  <p id="no-result" style="display:none; color:red; font-weight:bold; text-align:center; margin-top:10px;">
-    No result found
-  </p>
-
-  
-  </div>
-</header>
-
-
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-text">
-      <h2 style="font-size: 3em;">Welcome to Pieces of Kuhu</h2>
-      <p>
-        It’s a collection of reflections, 
-        healing moments, and honest takes on daily life.
-        Here, you’ll find words that speak unfiltered, stories that connect, 
-        and thoughts that go deeper than the surface.
-        My goal is simple: to create a space where curiosity meets clarity, 
-        where you pause, breathe, and see life through a different lens.
-      </p>
-    </div>
-
-    <!-- Floating Robot on Right -->
-    <div class="hero-robot">
-      <iframe src="https://my.spline.design/genkubgreetingrobot-DbBKK8wJH6LfsqRy3CfVdvgD/" 
-              frameborder="0"></iframe>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- My Journey Section -->
-<section  class="my-journey">
-  <h2 style="font-size: 3em;">My Journey</h2>
-  <p>
-    From overcoming personal challenges to embracing growth,
-    this is my story of healing, self-discovery, 
-    and finding beauty in little things. 
-    Here, I write to share my heart — the chaos,
-    the calm, and everything in between.
-  </p>
-</section>
-<!-- 🌸 Parallax Section -->
-<section class="parallax"></section>
-
-
-<!-- Blog Categories Section -->
-<section class="blog-categories-section">
-  <h2 style="margin-left: 520px; font-size: 3em;">Blog Categories</h2>
-  <div class="blog-categories">
-
-    <!-- Category 1: Healing -->
-    <div class="category-card">
-      <h3 class="category-title">Healing</h3>
-      <p class="category-subtitle">Emotional Wellness</p>
-      <p class="category-desc">Explore reflections on mental clarity, healing, and self-care journeys.</p>
-      <ul class="blog-list">
-        <li>
-          <a href="https://piecesofkuhu.blogspot.com/2025/07/healing-in-phases-like-moon-some-days-i.html">Healing in Phases</a>
-          <p>Softly In Phases - A Note To You And Me.</p>
-        </li>
-        <li>
-          <a href="https://piecesofkuhu.blogspot.com/2025/08/eventually-i-had-to-begin-what-i.html">To New Beginnings</a>
-          <p>Eventually, I had to begin what I had been avoiding for so long.</p>
-        </li>
-        <li>
-          <a href="https://piecesofkuhu.blogspot.com/2025/08/soft-girl-strong-soul-girl-who-feels.html">Soft Girl, Strong Soul</a>
-          <p>Soft Girl, Strong Soul — the girl who feels everything and still holds everyone together.</p>
-        </li>
-        <li>
-          <a href="https://piecesofkuhu.blogspot.com/2025/08/the-curse-of-feeling-everything-so.html">The Curse of Feeling Everything So Deeply</a>
-          <p>A deep dive into the challenges and strengths of being highly sensitive.</p>
-        </li>
-        <li>
-          <a href="https://piecesofkuhu.blogspot.com/2025/08/in-world-full-of-noise.html">In a World Full of Noise</a>
-          <p>Finding peace and clarity amidst the chaos.</p>
-        </li>
-        <li>
-          <a href="https://piecesofkuhu.blogspot.com/2025/09/the-weight-of-what-remains.html">The Weight of What Remains</a>
-          <p>Learning to let go of what no longer serves us.</p>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Category 2: Daily Life -->
-    <div class="category-card">
-      <h3 class="category-title">Daily Life</h3>
-      <p class="category-subtitle">Everyday Experiences</p>
-      <p class="category-desc">Discover little stories and moments that bring calm and happiness.</p>
-      <ul class="blog-list">
-        <li>
-          <a href="https://chaosofkuhu.blogspot.com/2025/08/my-daily-chaos-where-i-actually-live.html">My Daily Chaos</a>
-          <p>A glimpse into the beautiful messiness of everyday life.</p>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Category 3: Life Analysis -->
-    <div class="category-card">
-      <h3 class="category-title">Life Analysis</h3>
-      <p class="category-subtitle">Personal Growth</p>
-      <p class="category-desc">Insights and experiences on emotional growth, self-reflection, and life lessons.</p>
-      <ul class="blog-list">
-        <li>
-          <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/is-it-really-that-complicated.html">Is It Really That Complicated?</a>
-          <p>A deep dive into the complexities of life and relationships.</p>
-        </li>
-        <li>
-          <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/pressure-to-have-everything-figured-out.html">Pressure to Have Everything Figured Out</a>
-          <p>Exploring the societal expectations and personal struggles of having a clear life path.</p>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- Footer -->
-<!-- Footer -->
-<section class="footer-section">
-  <div class="footer-block">
-    <h3>Blog Categories</h3>
-    <p>Healing<br>
-       Daily life<br>
-       Life analysis<br>
-      </p>
-  </div>
-
-  <div class="footer-block">
-    <h3><a href="https://www.instagram.com/kuhu_bliss/" class="footer-btn">Connect With Me on Instagram</a></h3>
-    <p>Excited to connect and embark on this journey of personal exploration together.</p>
-  </div>
-
-  <div class="footer-block">
-        <h3><a href="https://mail.google.com/mail/?view=cm&fs=1&to=kuhukatarejk1@gmail.com&su=Feedback%20for%20Pieces%20of%20Kuhu" target="_blank" class="footer-btn">Send Feedback</a></h3>
-  Reach out and I’ll be happy to help!</p>
-
-  </div>
-</section>
-
-<!-- Footer Copy -->
-<footer>
-  <p>© 2025 Pieces of Kuhu ✨ All rights reserved.</p>
-</footer>
-
-
-<!-- Search Script -->
-<script>
-function searchBlogs(event) {
-  event.preventDefault();
-  const query = document.getElementById('search-input').value.toLowerCase();
-  const categories = document.querySelectorAll('.category-card');
-  let anyMatch = false; // ✅ keep track of matches
-
-  categories.forEach(category => {
-    const blogs = category.querySelectorAll('ul.blog-list li');
-    let categoryHasMatch = false;
-
-    blogs.forEach(blog => {
-      const title = blog.querySelector('a').textContent.toLowerCase();
-      const desc = blog.querySelector('p').textContent.toLowerCase();
-      if (title.includes(query) || desc.includes(query)) {
-        blog.style.display = 'block';
-        categoryHasMatch = true;
-        anyMatch = true; // ✅ found at least one match
-      } else {
-        blog.style.display = 'none';
+    // Fairy dust cursor trail
+    document.addEventListener('mousemove', function(e) {
+      // Create 2-3 sparkles per move
+      for (let i = 0; i < 3; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('cursor-trail');
+        // Position with random offset
+        const offsetX = Math.random() * 20 - 10;
+        const offsetY = Math.random() * 20 - 10;
+        sparkle.style.left = (e.clientX + offsetX) + 'px';
+        sparkle.style.top = (e.clientY + offsetY) + 'px';
+        // Random color
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.background = `radial-gradient(circle, ${color}CC, rgba(255,255,255,0))`;
+        document.body.appendChild(sparkle);
+        // Remove after animation
+        sparkle.addEventListener('animationend', () => sparkle.remove());
       }
     });
 
-    category.style.display = categoryHasMatch ? 'block' : 'none';
-  });
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
 
-  // ✅ Show or hide "No result found"
-  const noResultMsg = document.getElementById('no-result');
-  noResultMsg.style.display = anyMatch ? 'none' : 'block';
-}
-</script>
+    // Parallax effect for sections with .parallax-section class
+    window.addEventListener('scroll', function() {
+      document.querySelectorAll('.parallax-section').forEach(section => {
+        const offset = window.pageYOffset;
+        section.style.backgroundPositionY = `${offset * 0.3}px`; // Adjusted for smoother parallax
+      });
+    });
+  })();
+  </script>
 
+  <!-- Header -->
+  <header class="header-container">
+    <h1>Pieces of Kuhu</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#my-journey">My Journey</a></li>
+        <li><a href="#blog-categories">Blog Categories</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <form class="search-form" onsubmit="searchBlogs(event)" aria-label="Search blog posts">
+      <input type="text" id="search-input" placeholder="Search blogs..." aria-label="Enter search term">
+      <button type="submit" aria-label="Submit search">🔍</button>
+    </form>
+    <p id="no-result" style="display:none; color:red; font-weight:bold; text-align:center; margin-top:10px;">
+      No result found
+    </p>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h2 style="font-size: 3em;">Welcome to Pieces of Kuhu</h2>
+        <p>
+          It’s a collection of reflections, 
+          healing moments, and honest takes on daily life.
+          Here, you’ll find words that speak unfiltered, stories that connect, 
+          and thoughts that go deeper than the surface.
+          My goal is simple: to create a space where curiosity meets clarity, 
+          where you pause, breathe, and see life through a different lens.
+        </p>
+      </div>
+
+      <!-- Floating Robot on Right -->
+      <div class="hero-robot">
+        <iframe src="https://my.spline.design/genkubgreetingrobot-DbBKK8wJH6LfsqRy3CfVdvgD/" 
+                frameborder="0"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Journey Section -->
+  <section class="my-journey" id="my-journey">
+    <h2 style="font-size: 3em;">My Journey</h2>
+    <p>
+      From overcoming personal challenges to embracing growth,
+      this is my story of healing, self-discovery, 
+      and finding beauty in little things. 
+      Here, I write to share my heart — the chaos,
+      the calm, and everything in between.
+    </p>
+  </section>
+
+  <!-- 🌸 Parallax Section -->
+  <section class="parallax-section" style="height: 300px; background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></section>
+
+  <!-- Blog Categories Section -->
+  <section class="blog-categories-section" id="blog-categories">
+    <h2 style="font-size: 3em; text-align: center;">Blog Categories</h2>
+    <div class="blog-categories">
+      <!-- Category 1: Healing -->
+      <div class="category-card">
+        <h3 class="category-title">Healing</h3>
+        <p class="category-subtitle">Emotional Wellness</p>
+        <p class="category-desc">Explore reflections on mental clarity, healing, and self-care journeys.</p>
+        <ul class="blog-list">
+          <li>
+            <a href="https://piecesofkuhu.blogspot.com/2025/07/healing-in-phases-like-moon-some-days-i.html">Healing in Phases</a>
+            <p>Softly In Phases - A Note To You And Me.</p>
+          </li>
+          <li>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/eventually-i-had-to-begin-what-i.html">To New Beginnings</a>
+            <p>Eventually, I had to begin what I had been avoiding for so long.</p>
+          </li>
+          <li>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/soft-girl-strong-soul-girl-who-feels.html">Soft Girl, Strong Soul</a>
+            <p>Soft Girl, Strong Soul — the girl who feels everything and still holds everyone together.</p>
+          </li>
+          <li>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/the-curse-of-feeling-everything-so.html">The Curse of Feeling Everything So Deeply</a>
+            <p>A deep dive into the challenges and strengths of being highly sensitive.</p>
+          </li>
+          <li>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/in-world-full-of-noise.html">In a World Full of Noise</a>
+            <p>Finding peace and clarity amidst the chaos.</p>
+          </li>
+          <li>
+            <a href="https://piecesofkuhu.blogspot.com/2025/09/the-weight-of-what-remains.html">The Weight of What Remains</a>
+            <p>Learning to let go of what no longer serves us.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Category 2: Daily Life -->
+      <div class="category-card">
+        <h3 class="category-title">Daily Life</h3>
+        <p class="category-subtitle">Everyday Experiences</p>
+        <p class="category-desc">Discover little stories and moments that bring calm and happiness.</p>
+        <ul class="blog-list">
+          <li>
+            <a href="https://chaosofkuhu.blogspot.com/2025/08/my-daily-chaos-where-i-actually-live.html">My Daily Chaos</a>
+            <p>A glimpse into the beautiful messiness of everyday life.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Category 3: Life Analysis -->
+      <div class="category-card">
+        <h3 class="category-title">Life Analysis</h3>
+        <p class="category-subtitle">Personal Growth</p>
+        <p class="category-desc">"Insights and experiences on emotional growth, self-reflection, and life lessons."</p>
+        <ul class="blog-list">
+          <li>
+            <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/is-it-really-that-complicated.html">Is It Really That Complicated?</a>
+            <p>"A deep dive into the complexities of life and relationships."</p>
+          </li>
+          <li>
+            <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/pressure-to-have-everything-figured-out.html">Pressure to Have Everything Figured Out</a>
+            <p>"Exploring the societal expectations and personal struggles of having a clear life path."</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="footer-section" id="contact">
+    <div class="footer-block">
+      <h3>Blog Categories</h3>
+      <p>Healing<br>
+         Daily life<br>
+         Life analysis<br>
+      </p>
+    </div>
+
+    <div class="footer-block">
+      <h3>Follow Me</h3>
+      <p>
+        <a href="https://www.instagram.com/kuhu_bliss/" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://twitter.com/your-profile" target="_blank"><i class="bi bi-twitter"></i></a>
+      </p>
+      <p>Excited to connect and embark on this journey of personal exploration together.</p>
+    </div>
+
+    <div class="footer-block">
+      <h3><a href="https://mail.google.com/mail/?view=cm&fs=1&to=kuhukatarejk1@gmail.com&su=Feedback%20for%20Pieces%20of%20Kuhu" target="_blank" class="footer-btn">Send Feedback</a></h3>
+      <p>Reach out and I’ll be happy to help!</p>
+    </div>
+
+    <div class="footer-block">
+      <h3>Stay Updated</h3>
+      <form action="your-newsletter-service" method="post">
+        <input type="email" class="form-control mb-2" placeholder="Enter your email" aria-label="Email for newsletter">
+        <button type="submit" class="btn" style="background-color: #d63384; color: #fff;">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Copy -->
+  <footer>
+    <p>© 2025 Pieces of Kuhu ✨ All rights reserved.</p>
+  </footer>
+
+  <!-- Search Script -->
+  <script>
+  function searchBlogs(event) {
+    event.preventDefault();
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const categories = document.querySelectorAll('.category-card');
+    let anyMatch = false; // ✅ keep track of matches
+
+    categories.forEach(category => {
+      const blogs = category.querySelectorAll('ul.blog-list li');
+      let categoryHasMatch = false;
+
+      blogs.forEach(blog => {
+        const title = blog.querySelector('a').textContent.toLowerCase();
+        const desc = blog.querySelector('p').textContent.toLowerCase();
+        if (title.includes(query) || desc.includes(query)) {
+          blog.style.display = 'block';
+          categoryHasMatch = true;
+          anyMatch = true; // ✅ found at least one match
+        } else {
+          blog.style.display = 'none';
+        }
+      });
+
+      category.style.display = categoryHasMatch ? 'block' : 'none';
+    });
+
+    // ✅ Show or hide "No result found"
+    const noResultMsg = document.getElementById('no-result');
+    noResultMsg.style.display = anyMatch ? 'none' : 'block';
+  }
+  </script>
 
 </body>
 </html>
-
-
-
