@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pieces of Kuhu</title>
   <meta name="description" content="Kuhu's personal blog sharing stories on lifestyle, travel, and more.">
   <meta name="keywords" content="blog, lifestyle, travel, personal stories, Kuhu">
   <meta name="author" content="Kuhu">
@@ -11,7 +12,6 @@
   <meta property="og:description" content="Kuhu's personal blog sharing stories on lifestyle, travel, and more.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80">
   <meta property="og:url" content="https://piecesofkuhu.com">
-  <title>Pieces of Kuhu</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- Bootstrap Icons -->
@@ -22,12 +22,51 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #fff0f5;
+      background: linear-gradient(135deg, #fff0f5 0%, #e6e6fa 50%, #f0e6ff 100%);
       color: #333;
       overflow-x: hidden;
-      scroll-behavior: smooth; /* Enable smooth scrolling */
+      scroll-behavior: smooth;
+      animation: gradientFlow 15s ease-in-out infinite;
+      transition: background 0.5s, color 0.5s;
     }
-    /* Parallax Background for Site-Wide Effect */
+    /* Dark Mode */
+    body.dark-mode {
+      background: linear-gradient(135deg, #2c1b33 0%, #3c2f4f 50%, #4b3a66 100%);
+      color: #e6e6fa;
+    }
+    body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+      color: #ff99cc;
+    }
+    body.dark-mode p {
+      color: #d3c7e0;
+    }
+    body.dark-mode a {
+      color: #ff99cc;
+    }
+    body.dark-mode .search-form input {
+      background: rgba(40, 40, 60, 0.9);
+      border-color: #ff99cc;
+      color: #e6e6fa;
+    }
+    body.dark-mode .category-card {
+      background: linear-gradient(135deg, #3c2f4f, #4b3a66);
+    }
+    body.dark-mode .blog-list li {
+      background: linear-gradient(45deg, #4b3a66, #5e4b80);
+    }
+    body.dark-mode .footer-section {
+      background: linear-gradient(45deg, #3c2f4f, #5e4b80, #4b3a66);
+    }
+    body.dark-mode footer {
+      background: linear-gradient(45deg, #ff99cc, #dda0dd);
+    }
+    /* Animated Gradient Background */
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Parallax Background */
     body::before {
       content: "";
       position: fixed;
@@ -35,14 +74,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: linear-gradient(90deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px),
-                        linear-gradient(180deg, rgba(255, 204, 229, 0.1) 1px, transparent 1px);
+      background-image: linear-gradient(90deg, rgba(255, 204, 229, 0.2) 1px, transparent 1px),
+                        linear-gradient(180deg, rgba(255, 204, 229, 0.2) 1px, transparent 1px);
       background-size: 60px 60px;
-      background-attachment: fixed; /* Parallax effect */
+      background-attachment: fixed;
       z-index: -1;
       animation: gradientShift 60s linear infinite;
     }
-    /* Fallback for mobile devices */
     @supports (-webkit-overflow-scrolling: touch) {
       body::before {
         background-attachment: scroll;
@@ -52,8 +90,8 @@
     .cursor-trail {
       position: fixed;
       pointer-events: none;
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       z-index: 9999;
       background: radial-gradient(circle, rgba(255, 230, 240, 0.9), rgba(255, 255, 255, 0));
@@ -62,9 +100,9 @@
     }
     @keyframes sparkleFade {
       0% { opacity: 1; transform: scale(1) rotate(0deg); }
-      100% { opacity: 0; transform: scale(2) rotate(360deg); }
+      100% { opacity: 0; transform: scale(2.5) rotate(360deg); }
     }
-    /* Parallax Section Class for Specific Sections */
+    /* Parallax Section */
     .parallax-section {
       position: relative;
       background-position: center;
@@ -78,16 +116,57 @@
         background-attachment: scroll;
       }
     }
+    /* Fade-In Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    /* Bounce Animation for Buttons */
+    .bounce {
+      animation: bounceEffect 0.3s ease;
+    }
+    @keyframes bounceEffect {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
     h1, h2, h3 {
       font-family: 'Dancing Script', cursive;
-      color: #d63384;
+      color: #c71585;
     }
     p {
-      color: #6b4f4f;
+      color: #4a3c3c;
     }
     a {
       text-decoration: none;
-      color: #d63384;
+      color: #c71585;
+      position: relative;
+    }
+    /* Tooltip for Blog Links */
+    .blog-list li a:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #ffb6c1, #dda0dd);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      white-space: nowrap;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeInTooltip 0.3s ease forwards;
+    }
+    @keyframes fadeInTooltip {
+      0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
     /* Header */
     header {
@@ -95,161 +174,224 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background: #ffd6e0;
+      background: linear-gradient(45deg, #ffb6c1, #dda0dd);
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 0 0 20px 20px;
     }
     header h1 {
-      font-size: 2.2em;
+      font-size: 2.4em;
       margin: 0;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     }
     .search-form {
       display: flex;
       align-items: center;
     }
     .search-form input {
-      padding: 8px 12px;
-      border-radius: 20px;
-      border: 1px solid #d63384;
+      padding: 10px 14px;
+      border-radius: 25px;
+      border: 1px solid #c71585;
       outline: none;
-      width: 200px;
+      width: 220px;
+      background: rgba(255, 255, 255, 0.9);
       transition: all 0.3s ease;
     }
     .search-form input:focus {
-      box-shadow: 0 0 8px rgba(214, 51, 132, 0.4);
+      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
     }
     .search-form button {
-      padding: 8px 12px;
-      margin-left: 5px;
+      padding: 10px 14px;
+      margin-left: 8px;
       border-radius: 50%;
       border: none;
-      background-color: #d63384;
+      background: linear-gradient(45deg, #c71585, #dda0dd);
       color: #fff;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .search-form button:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
+    }
+    .search-form button:active {
+      animation: bounceEffect 0.3s ease;
+    }
+    /* Dark Mode Toggle */
+    .dark-mode-toggle {
+      padding: 8px 12px;
+      border-radius: 25px;
+      border: none;
+      background: linear-gradient(45deg, #c71585, #dda0dd);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .dark-mode-toggle:hover {
       transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
     }
     /* Navigation */
     nav ul {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
       margin: 0;
       padding: 0;
     }
     nav ul li a {
       font-family: 'Poppins', sans-serif;
-      color: #d63384;
-      font-size: 1.1em;
-      transition: color 0.3s;
+      color: #fff;
+      font-size: 1.2em;
+      transition: color 0.3s, text-shadow 0.3s;
     }
     nav ul li a:hover {
-      color: #6b4f4f;
+      color: #f8e1e9;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
     }
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 60px 20px;
-      background: #ffe4ec;
-      border-radius: 0 0 40px 40px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #fce2e6 0%, #e6e6fa 100%);
+      border-radius: 0 0 50px 50px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
     .hero h2 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+      font-size: 3.5em;
+      margin-bottom: 15px;
+      color: #c71585;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     }
     .hero-robot {
-      max-width: 300px;
-      margin: 20px auto;
+      max-width: 320px;
+      margin: 30px auto;
     }
     .hero-robot iframe {
       width: 100%;
-      height: 300px;
+      height: 320px;
+      border-radius: 15px;
     }
     /* Journey Section */
     .my-journey {
-      padding: 40px 20px;
+      padding: 50px 20px;
       text-align: center;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
+      background: linear-gradient(180deg, rgba(255, 245, 247, 0.8), rgba(230, 230, 250, 0.8));
+      border-radius: 20px;
     }
     /* Blog Categories */
     .blog-categories-section {
-      padding: 50px 20px;
-      background: #fff;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, #fff 0%, #f0e6ff 100%);
     }
     .blog-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .category-card {
+      background: linear-gradient(135deg, #ffe4e6, #e6e6fa);
+      border-radius: 20px;
+      padding: 30px;
+      width: 320px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .category-card h3 {
+      margin-top: 0;
+      font-size: 2em;
+    }
+    .blog-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .blog-list li {
+      background: linear-gradient(45deg, #ffd6e0, #f0e6ff);
+      border-radius: 15px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .blog-list li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    .blog-list li a {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: 1.2em;
+      color: #c71585;
+    }
+    .blog-list li p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95em;
+      margin-top: 8px;
+    }
+    /* Footer */
+    .footer-section {
+      background: linear-gradient(45deg, #ffb6c1, #dda0dd, #e6e6fa);
+      padding: 40px 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 25px;
       justify-content: center;
     }
-    .category-card {
-      background: #ffe4e6;
-      border-radius: 16px;
-      padding: 25px;
-      width: 300px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .category-card h3 {
-      margin-top: 0;
-    }
-    .blog-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .blog-list li {
-      background: #ffd6e0;
-      border-radius: 12px;
-      padding: 12px 15px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .blog-list li:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-    }
-    .blog-list li a {
-      font-family: 'Dancing Script', cursive;
-      font-weight: 700;
-      font-size: 1.1em;
-      color: #d63384;
-    }
-    .blog-list li p {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.9em;
-      margin-top: 5px;
-    }
-    /* Footer */
-    .footer-section {
-      background: #ffd6e0;
-      padding: 30px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
     .footer-block {
-      width: 250px;
+      width: 280px;
       text-align: center;
     }
     .footer-block a i {
-      font-size: 1.5em;
-      margin: 0 10px;
+      font-size: 1.8em;
+      margin: 0 12px;
+      color: #c71585;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .footer-block a i:hover {
+      color: #fff;
+      transform: scale(1.2);
     }
     footer {
       text-align: center;
-      padding: 15px;
-      background: #d63384;
+      padding: 20px;
+      background: linear-gradient(45deg, #c71585, #dda0dd);
       color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 16px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #c71585, #dda0dd);
+      color: #fff;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .back-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
+    }
+    .back-to-top.show {
+      display: block;
+      opacity: 1;
     }
     /* Animations */
     @keyframes gradientShift {
@@ -260,86 +402,83 @@
     @media (max-width: 768px) {
       header {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+        padding: 15px 20px;
       }
       header h1 {
-        font-size: 1.8em;
+        font-size: 2em;
+      }
+      .search-form {
+        width: 100%;
+        justify-content: center;
       }
       .search-form input {
-        width: 150px;
+        width: 100%;
+        max-width: 200px;
+      }
+      .hero {
+        padding: 60px 15px;
       }
       .hero h2 {
-        font-size: 2em;
+        font-size: 2.5em;
       }
       .category-card {
         width: 100%;
-        max-width: 350px;
+        max-width: 360px;
+        padding: 20px;
       }
       nav ul {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
       }
       .footer-block {
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
       }
       .hero-robot {
-        max-width: 200px;
+        max-width: 220px;
       }
       .hero-robot iframe {
-        height: 200px;
+        height: 220px;
+      }
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 14px;
+      }
+      .dark-mode-toggle {
+        font-size: 0.9em;
+        padding: 6px 10px;
+      }
+      .blog-list li a:hover::after {
+        font-size: 0.8em;
+        padding: 6px 10px;
+      }
+    }
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+      .hero h2 {
+        font-size: 2em;
+      }
+      .my-journey {
+        padding: 40px 15px;
+      }
+      .category-card h3 {
+        font-size: 1.8em;
+      }
+      .blog-list li a {
+        font-size: 1.1em;
+      }
+      .footer-block {
+        padding: 15px;
       }
     }
   </style>
 </head>
 <body>
-  <script>
-  (function() {
-    const colors = ['#ffe6f0', '#ffffff', '#ffd700']; // pink, white, gold
-
-    document.body.style.cursor = 'default'; // Ensures cursor visible
-
-    // Fairy dust cursor trail
-    document.addEventListener('mousemove', function(e) {
-      // Create 2-3 sparkles per move
-      for (let i = 0; i < 3; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.classList.add('cursor-trail');
-        // Position with random offset
-        const offsetX = Math.random() * 20 - 10;
-        const offsetY = Math.random() * 20 - 10;
-        sparkle.style.left = (e.clientX + offsetX) + 'px';
-        sparkle.style.top = (e.clientY + offsetY) + 'px';
-        // Random color
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        sparkle.style.background = `radial-gradient(circle, ${color}CC, rgba(255,255,255,0))`;
-        document.body.appendChild(sparkle);
-        // Remove after animation
-        sparkle.addEventListener('animationend', () => sparkle.remove());
-      }
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      });
-    });
-
-    // Parallax effect for sections with .parallax-section class
-    window.addEventListener('scroll', function() {
-      document.querySelectorAll('.parallax-section').forEach(section => {
-        const offset = window.pageYOffset;
-        section.style.backgroundPositionY = `${offset * 0.3}px`; // Adjusted for smoother parallax
-      });
-    });
-  })();
-  </script>
-
   <!-- Header -->
   <header class="header-container">
     <h1>Pieces of Kuhu</h1>
@@ -351,20 +490,23 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <form class="search-form" onsubmit="searchBlogs(event)" aria-label="Search blog posts">
-      <input type="text" id="search-input" placeholder="Search blogs..." aria-label="Enter search term">
-      <button type="submit" aria-label="Submit search">🔍</button>
-    </form>
-    <p id="no-result" style="display:none; color:red; font-weight:bold; text-align:center; margin-top:10px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <form class="search-form" onsubmit="searchBlogs(event)" aria-label="Search blog posts">
+        <input type="text" id="search-input" placeholder="Search blogs..." aria-label="Enter search term">
+        <button type="submit" aria-label="Submit search">🔍</button>
+      </form>
+      <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    </div>
+    <p id="no-result" style="display:none; color:#fff; font-weight:bold; text-align:center; margin-top:10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
       No result found
     </p>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero" id="home">
+  <section class="hero fade-in" id="home">
     <div class="hero-content">
       <div class="hero-text">
-        <h2 style="font-size: 3em;">Welcome to Pieces of Kuhu</h2>
+        <h2>Welcome to Pieces of Kuhu</h2>
         <p>
           It’s a collection of reflections, 
           healing moments, and honest takes on daily life.
@@ -374,8 +516,6 @@
           where you pause, breathe, and see life through a different lens.
         </p>
       </div>
-
-      <!-- Floating Robot on Right -->
       <div class="hero-robot">
         <iframe src="https://my.spline.design/genkubgreetingrobot-DbBKK8wJH6LfsqRy3CfVdvgD/" 
                 frameborder="0"></iframe>
@@ -384,8 +524,8 @@
   </section>
 
   <!-- My Journey Section -->
-  <section class="my-journey" id="my-journey">
-    <h2 style="font-size: 3em;">My Journey</h2>
+  <section class="my-journey fade-in" id="my-journey">
+    <h2>My Journey</h2>
     <p>
       From overcoming personal challenges to embracing growth,
       this is my story of healing, self-discovery, 
@@ -395,72 +535,67 @@
     </p>
   </section>
 
-  <!-- 🌸 Parallax Section -->
+  <!-- Parallax Section -->
   <section class="parallax-section" style="height: 300px; background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></section>
 
   <!-- Blog Categories Section -->
-  <section class="blog-categories-section" id="blog-categories">
-    <h2 style="font-size: 3em; text-align: center;">Blog Categories</h2>
+  <section class="blog-categories-section fade-in" id="blog-categories">
+    <h2 style="text-align: center;">Blog Categories</h2>
     <div class="blog-categories">
-      <!-- Category 1: Healing -->
       <div class="category-card">
         <h3 class="category-title">Healing</h3>
         <p class="category-subtitle">Emotional Wellness</p>
         <p class="category-desc">Explore reflections on mental clarity, healing, and self-care journeys.</p>
         <ul class="blog-list">
           <li>
-            <a href="https://piecesofkuhu.blogspot.com/2025/07/healing-in-phases-like-moon-some-days-i.html">Healing in Phases</a>
+            <a href="https://piecesofkuhu.blogspot.com/2025/07/healing-in-phases-like-moon-some-days-i.html" data-tooltip="A note on healing softly">Healing in Phases</a>
             <p>Softly In Phases - A Note To You And Me.</p>
           </li>
           <li>
-            <a href="https://piecesofkuhu.blogspot.com/2025/08/eventually-i-had-to-begin-what-i.html">To New Beginnings</a>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/eventually-i-had-to-begin-what-i.html" data-tooltip="Starting what was long avoided">To New Beginnings</a>
             <p>Eventually, I had to begin what I had been avoiding for so long.</p>
           </li>
           <li>
-            <a href="https://piecesofkuhu.blogspot.com/2025/08/soft-girl-strong-soul-girl-who-feels.html">Soft Girl, Strong Soul</a>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/soft-girl-strong-soul-girl-who-feels.html" data-tooltip="Balancing sensitivity and strength">Soft Girl, Strong Soul</a>
             <p>Soft Girl, Strong Soul — the girl who feels everything and still holds everyone together.</p>
           </li>
           <li>
-            <a href="https://piecesofkuhu.blogspot.com/2025/08/the-curse-of-feeling-everything-so.html">The Curse of Feeling Everything So Deeply</a>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/the-curse-of-feeling-everything-so.html" data-tooltip="Embracing high sensitivity">The Curse of Feeling Everything So Deeply</a>
             <p>A deep dive into the challenges and strengths of being highly sensitive.</p>
           </li>
           <li>
-            <a href="https://piecesofkuhu.blogspot.com/2025/08/in-world-full-of-noise.html">In a World Full of Noise</a>
+            <a href="https://piecesofkuhu.blogspot.com/2025/08/in-world-full-of-noise.html" data-tooltip="Finding peace in chaos">In a World Full of Noise</a>
             <p>Finding peace and clarity amidst the chaos.</p>
           </li>
           <li>
-            <a href="https://piecesofkuhu.blogspot.com/2025/09/the-weight-of-what-remains.html">The Weight of What Remains</a>
+            <a href="https://piecesofkuhu.blogspot.com/2025/09/the-weight-of-what-remains.html" data-tooltip="Letting go of burdens">The Weight of What Remains</a>
             <p>Learning to let go of what no longer serves us.</p>
           </li>
         </ul>
       </div>
-
-      <!-- Category 2: Daily Life -->
       <div class="category-card">
         <h3 class="category-title">Daily Life</h3>
         <p class="category-subtitle">Everyday Experiences</p>
         <p class="category-desc">Discover little stories and moments that bring calm and happiness.</p>
         <ul class="blog-list">
           <li>
-            <a href="https://chaosofkuhu.blogspot.com/2025/08/my-daily-chaos-where-i-actually-live.html">My Daily Chaos</a>
+            <a href="https://chaosofkuhu.blogspot.com/2025/08/my-daily-chaos-where-i-actually-live.html" data-tooltip="Embracing everyday messiness">My Daily Chaos</a>
             <p>A glimpse into the beautiful messiness of everyday life.</p>
           </li>
         </ul>
       </div>
-
-      <!-- Category 3: Life Analysis -->
       <div class="category-card">
         <h3 class="category-title">Life Analysis</h3>
         <p class="category-subtitle">Personal Growth</p>
-        <p class="category-desc">"Insights and experiences on emotional growth, self-reflection, and life lessons."</p>
+        <p class="category-desc">Insights and experiences on emotional growth, self-reflection, and life lessons.</p>
         <ul class="blog-list">
           <li>
-            <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/is-it-really-that-complicated.html">Is It Really That Complicated?</a>
-            <p>"A deep dive into the complexities of life and relationships."</p>
+            <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/is-it-really-that-complicated.html" data-tooltip="Unraveling life’s complexities">Is It Really That Complicated?</a>
+            <p>A deep dive into the complexities of life and relationships.</p>
           </li>
           <li>
-            <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/pressure-to-have-everything-figured-out.html">Pressure to Have Everything Figured Out</a>
-            <p>"Exploring the societal expectations and personal struggles of having a clear life path."</p>
+            <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/pressure-to-have-everything-figured-out.html" data-tooltip="Navigating societal pressures">Pressure to Have Everything Figured Out</a>
+            <p>Exploring the societal expectations and personal struggles of having a clear life path.</p>
           </li>
         </ul>
       </div>
@@ -468,15 +603,11 @@
   </section>
 
   <!-- Footer -->
-  <section class="footer-section" id="contact">
+  <section class="footer-section fade-in" id="contact">
     <div class="footer-block">
       <h3>Blog Categories</h3>
-      <p>Healing<br>
-         Daily life<br>
-         Life analysis<br>
-      </p>
+      <p>Healing<br>Daily life<br>Life analysis</p>
     </div>
-
     <div class="footer-block">
       <h3>Follow Me</h3>
       <p>
@@ -485,58 +616,109 @@
       </p>
       <p>Excited to connect and embark on this journey of personal exploration together.</p>
     </div>
-
     <div class="footer-block">
       <h3><a href="https://mail.google.com/mail/?view=cm&fs=1&to=kuhukatarejk1@gmail.com&su=Feedback%20for%20Pieces%20of%20Kuhu" target="_blank" class="footer-btn">Send Feedback</a></h3>
       <p>Reach out and I’ll be happy to help!</p>
     </div>
-
     <div class="footer-block">
       <h3>Stay Updated</h3>
       <form action="your-newsletter-service" method="post">
         <input type="email" class="form-control mb-2" placeholder="Enter your email" aria-label="Email for newsletter">
-        <button type="submit" class="btn" style="background-color: #d63384; color: #fff;">Subscribe</button>
+        <button type="submit" class="btn" style="background: linear-gradient(45deg, #c71585, #dda0dd); color: #fff;" onclick="this.classList.add('bounce')">Subscribe</button>
       </form>
     </div>
   </section>
 
-  <!-- Footer Copy -->
   <footer>
     <p>© 2025 Pieces of Kuhu ✨ All rights reserved.</p>
   </footer>
 
-  <!-- Search Script -->
+  <!-- Back to Top Button -->
+  <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+  <!-- JavaScript -->
   <script>
-  function searchBlogs(event) {
-    event.preventDefault();
-    const query = document.getElementById('search-input').value.toLowerCase();
-    const categories = document.querySelectorAll('.category-card');
-    let anyMatch = false; // ✅ keep track of matches
-
-    categories.forEach(category => {
-      const blogs = category.querySelectorAll('ul.blog-list li');
-      let categoryHasMatch = false;
-
-      blogs.forEach(blog => {
-        const title = blog.querySelector('a').textContent.toLowerCase();
-        const desc = blog.querySelector('p').textContent.toLowerCase();
-        if (title.includes(query) || desc.includes(query)) {
-          blog.style.display = 'block';
-          categoryHasMatch = true;
-          anyMatch = true; // ✅ found at least one match
-        } else {
-          blog.style.display = 'none';
+    (function() {
+      const colors = ['#ffe6f0', '#e6e6fa', '#ffd700'];
+      document.body.style.cursor = 'default';
+      // Fairy dust cursor trail
+      document.addEventListener('mousemove', function(e) {
+        for (let i = 0; i < 3; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.classList.add('cursor-trail');
+          const offsetX = Math.random() * 20 - 10;
+          const offsetY = Math.random() * 20 - 10;
+          sparkle.style.left = (e.clientX + offsetX) + 'px';
+          sparkle.style.top = (e.clientY + offsetY) + 'px';
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          sparkle.style.background = `radial-gradient(circle, ${color}CC, rgba(255,255,255,0))`;
+          document.body.appendChild(sparkle);
+          sparkle.addEventListener('animationend', () => sparkle.remove());
         }
       });
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        });
+      });
+      // Parallax effect
+      window.addEventListener('scroll', function() {
+        document.querySelectorAll('.parallax-section').forEach(section => {
+          const offset = window.pageYOffset;
+          section.style.backgroundPositionY = `${offset * 0.3}px`;
+        });
+        // Show/hide back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+      });
+    })();
 
-      category.style.display = categoryHasMatch ? 'block' : 'none';
-    });
+    function searchBlogs(event) {
+      event.preventDefault();
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const categories = document.querySelectorAll('.category-card');
+      let anyMatch = false;
+      categories.forEach(category => {
+        const blogs = category.querySelectorAll('ul.blog-list li');
+        let categoryHasMatch = false;
+        blogs.forEach(blog => {
+          const title = blog.querySelector('a').textContent.toLowerCase();
+          const desc = blog.querySelector('p').textContent.toLowerCase();
+          if (title.includes(query) || desc.includes(query)) {
+            blog.style.display = 'block';
+            categoryHasMatch = true;
+            anyMatch = true;
+          } else {
+            blog.style.display = 'none';
+          }
+        });
+        category.style.display = categoryHasMatch ? 'block' : 'none';
+      });
+      const noResultMsg = document.getElementById('no-result');
+      noResultMsg.style.display = anyMatch ? 'none' : 'block';
+    }
 
-    // ✅ Show or hide "No result found"
-    const noResultMsg = document.getElementById('no-result');
-    noResultMsg.style.display = anyMatch ? 'none' : 'block';
-  }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const toggleButton = document.querySelector('.dark-mode-toggle');
+      toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   </script>
-
 </body>
-</html>
+</html> 

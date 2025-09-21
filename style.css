@@ -467,27 +467,3 @@ footer {
   }
 }
 
-/* ===================== Responsive with Bootstrap Breakpoints ===================== */
-@media (max-width: 992px) {
-  header h1 { font-size: 3.5em; }
-  .hero-text h2 { font-size: 2.5rem; }
-  .hero-text p { font-size: 1.2rem; }
-  .hero-robot { flex: 0 0 100%; max-width: 200px; margin: 20px auto; }
-  .blog-categories { flex-direction: column; align-items: center; }
-  .category-card { max-width: 400px; }
-}
-
-@media (max-width: 768px) {
-  header h1 { font-size: 2.8em; }
-  .hero-text h2 { font-size: 2rem; }
-  .hero-text p { font-size: 1rem; }
-  .search-form input { width: 150px; }
-}
-
-@media (max-width: 576px) {
-  header h1 { font-size: 2.2em; }
-  .hero-text h2 { font-size: 1.8rem; }
-  .hero-text p { font-size: 0.9rem; }
-  .profile-pic { width: 120px; height: 120px; }
-  .intro-text { font-size: 1.8rem; }
-}
