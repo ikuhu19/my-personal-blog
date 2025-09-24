@@ -17,466 +17,9 @@
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #fff0f5 0%, #e6e6fa 50%, #f0e6ff 100%);
-      color: #333;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      animation: gradientFlow 15s ease-in-out infinite;
-      transition: background 0.5s, color 0.5s;
-    }
-    /* Dark Mode */
-    body.dark-mode {
-      background: linear-gradient(135deg, #2c1b33 0%, #3c2f4f 50%, #4b3a66 100%);
-      color: #e6e6fa;
-    }
-    body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
-      color: #ff99cc;
-    }
-    body.dark-mode p {
-      color: #d3c7e0;
-    }
-    body.dark-mode a {
-      color: #ff99cc;
-    }
-    body.dark-mode .search-form input {
-      background: rgba(40, 40, 60, 0.9);
-      border-color: #ff99cc;
-      color: #e6e6fa;
-    }
-    body.dark-mode .category-card {
-      background: linear-gradient(135deg, #3c2f4f, #4b3a66);
-    }
-    body.dark-mode .blog-list li {
-      background: linear-gradient(45deg, #4b3a66, #5e4b80);
-    }
-    body.dark-mode .footer-section {
-      background: linear-gradient(45deg, #3c2f4f, #5e4b80, #4b3a66);
-    }
-    body.dark-mode footer {
-      background: linear-gradient(45deg, #ff99cc, #dda0dd);
-    }
-    /* Animated Gradient Background */
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    /* Parallax Background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(90deg, rgba(255, 204, 229, 0.2) 1px, transparent 1px),
-                        linear-gradient(180deg, rgba(255, 204, 229, 0.2) 1px, transparent 1px);
-      background-size: 60px 60px;
-      background-attachment: fixed;
-      z-index: -1;
-      animation: gradientShift 60s linear infinite;
-    }
-    @supports (-webkit-overflow-scrolling: touch) {
-      body::before {
-        background-attachment: scroll;
-      }
-    }
-    /* Fairy Dust Cursor Trail */
-    .cursor-trail {
-      position: fixed;
-      pointer-events: none;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      z-index: 9999;
-      background: radial-gradient(circle, rgba(255, 230, 240, 0.9), rgba(255, 255, 255, 0));
-      mix-blend-mode: screen;
-      animation: sparkleFade 1s forwards;
-    }
-    @keyframes sparkleFade {
-      0% { opacity: 1; transform: scale(1) rotate(0deg); }
-      100% { opacity: 0; transform: scale(2.5) rotate(360deg); }
-    }
-    /* Parallax Section */
-    .parallax-section {
-      position: relative;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: fixed;
-      z-index: 1;
-    }
-    @supports (-webkit-overflow-scrolling: touch) {
-      .parallax-section {
-        background-attachment: scroll;
-      }
-    }
-    /* Fade-In Animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease-out forwards;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    /* Bounce Animation for Buttons */
-    .bounce {
-      animation: bounceEffect 0.3s ease;
-    }
-    @keyframes bounceEffect {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    h1, h2, h3 {
-      font-family: 'Dancing Script', cursive;
-      color: #c71585;
-    }
-    p {
-      color: #4a3c3c;
-    }
-    a {
-      text-decoration: none;
-      color: #c71585;
-      position: relative;
-    }
-    /* Tooltip for Blog Links */
-    .blog-list li a:hover::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(45deg, #ffb6c1, #dda0dd);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 0.9em;
-      white-space: nowrap;
-      z-index: 10;
-      opacity: 0;
-      animation: fadeInTooltip 0.3s ease forwards;
-    }
-    @keyframes fadeInTooltip {
-      0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: linear-gradient(45deg, #ffb6c1, #dda0dd);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border-radius: 0 0 20px 20px;
-    }
-    header h1 {
-      font-size: 2.4em;
-      margin: 0;
-      color: #fff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-    .search-form {
-      display: flex;
-      align-items: center;
-    }
-    .search-form input {
-      padding: 10px 14px;
-      border-radius: 25px;
-      border: 1px solid #c71585;
-      outline: none;
-      width: 220px;
-      background: rgba(255, 255, 255, 0.9);
-      transition: all 0.3s ease;
-    }
-    .search-form input:focus {
-      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
-    }
-    .search-form button {
-      padding: 10px 14px;
-      margin-left: 8px;
-      border-radius: 50%;
-      border: none;
-      background: linear-gradient(45deg, #c71585, #dda0dd);
-      color: #fff;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .search-form button:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
-    }
-    .search-form button:active {
-      animation: bounceEffect 0.3s ease;
-    }
-    /* Dark Mode Toggle */
-    .dark-mode-toggle {
-      padding: 8px 12px;
-      border-radius: 25px;
-      border: none;
-      background: linear-gradient(45deg, #c71585, #dda0dd);
-      color: #fff;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .dark-mode-toggle:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
-    }
-    /* Navigation */
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li a {
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      font-size: 1.2em;
-      transition: color 0.3s, text-shadow 0.3s;
-    }
-    nav ul li a:hover {
-      color: #f8e1e9;
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-    }
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #fce2e6 0%, #e6e6fa 100%);
-      border-radius: 0 0 50px 50px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    }
-    .hero h2 {
-      font-size: 3.5em;
-      margin-bottom: 15px;
-      color: #c71585;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-    }
-    .hero-robot {
-      max-width: 320px;
-      margin: 30px auto;
-    }
-    .hero-robot iframe {
-      width: 100%;
-      height: 320px;
-      border-radius: 15px;
-    }
-    /* Journey Section */
-    .my-journey {
-      padding: 50px 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-      background: linear-gradient(180deg, rgba(255, 245, 247, 0.8), rgba(230, 230, 250, 0.8));
-      border-radius: 20px;
-    }
-    /* Blog Categories */
-    .blog-categories-section {
-      padding: 60px 20px;
-      background: linear-gradient(180deg, #fff 0%, #f0e6ff 100%);
-    }
-    .blog-categories {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-    }
-    .category-card {
-      background: linear-gradient(135deg, #ffe4e6, #e6e6fa);
-      border-radius: 20px;
-      padding: 30px;
-      width: 320px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .category-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-    .category-card h3 {
-      margin-top: 0;
-      font-size: 2em;
-    }
-    .blog-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .blog-list li {
-      background: linear-gradient(45deg, #ffd6e0, #f0e6ff);
-      border-radius: 15px;
-      padding: 15px 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .blog-list li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-    }
-    .blog-list li a {
-      font-family: 'Dancing Script', cursive;
-      font-weight: 700;
-      font-size: 1.2em;
-      color: #c71585;
-    }
-    .blog-list li p {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.95em;
-      margin-top: 8px;
-    }
-    /* Footer */
-    .footer-section {
-      background: linear-gradient(45deg, #ffb6c1, #dda0dd, #e6e6fa);
-      padding: 40px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
-      justify-content: center;
-    }
-    .footer-block {
-      width: 280px;
-      text-align: center;
-    }
-    .footer-block a i {
-      font-size: 1.8em;
-      margin: 0 12px;
-      color: #c71585;
-      transition: color 0.3s, transform 0.3s;
-    }
-    .footer-block a i:hover {
-      color: #fff;
-      transform: scale(1.2);
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: linear-gradient(45deg, #c71585, #dda0dd);
-      color: #fff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-    /* Back to Top Button */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      padding: 12px 16px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #c71585, #dda0dd);
-      color: #fff;
-      cursor: pointer;
-      display: none;
-      z-index: 1000;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .back-to-top:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgba(199, 21, 133, 0.5);
-    }
-    .back-to-top.show {
-      display: block;
-      opacity: 1;
-    }
-    /* Animations */
-    @keyframes gradientShift {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 600px 600px, 600px 600px; }
-    }
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 20px;
-      }
-      header h1 {
-        font-size: 2em;
-      }
-      .search-form {
-        width: 100%;
-        justify-content: center;
-      }
-      .search-form input {
-        width: 100%;
-        max-width: 200px;
-      }
-      .hero {
-        padding: 60px 15px;
-      }
-      .hero h2 {
-        font-size: 2.5em;
-      }
-      .category-card {
-        width: 100%;
-        max-width: 360px;
-        padding: 20px;
-      }
-      nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-      }
-      .footer-block {
-        width: 100%;
-        max-width: 320px;
-      }
-      .hero-robot {
-        max-width: 220px;
-      }
-      .hero-robot iframe {
-        height: 220px;
-      }
-      .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        padding: 10px 14px;
-      }
-      .dark-mode-toggle {
-        font-size: 0.9em;
-        padding: 6px 10px;
-      }
-      .blog-list li a:hover::after {
-        font-size: 0.8em;
-        padding: 6px 10px;
-      }
-    }
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8em;
-      }
-      .hero h2 {
-        font-size: 2em;
-      }
-      .my-journey {
-        padding: 40px 15px;
-      }
-      .category-card h3 {
-        font-size: 1.8em;
-      }
-      .blog-list li a {
-        font-size: 1.1em;
-      }
-      .footer-block {
-        padding: 15px;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Header -->
@@ -484,18 +27,17 @@
     <h1>Pieces of Kuhu</h1>
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#my-journey">My Journey</a></li>
-        <li><a href="#blog-categories">Blog Categories</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#home" class="nav-link"><i class="bi bi-house-fill"></i> Home</a></li>
+        <li><a href="#my-journey" class="nav-link"><i class="bi bi-journal-text"></i> My Journey</a></li>
+        <li><a href="#blog-categories" class="nav-link"><i class="bi bi-tags-fill"></i> Blog Categories</a></li>
+        <li><a href="#connect" class="nav-link"><i class="bi bi-envelope-fill"></i> Connect with me</a></li>
       </ul>
     </nav>
     <div style="display: flex; align-items: center; gap: 10px;">
       <form class="search-form" onsubmit="searchBlogs(event)" aria-label="Search blog posts">
         <input type="text" id="search-input" placeholder="Search blogs..." aria-label="Enter search term">
-        <button type="submit" aria-label="Submit search">🔍</button>
+        <button type="submit" aria-label="Submit search"><i class="bi bi-search"></i></button>
       </form>
-      <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
     </div>
     <p id="no-result" style="display:none; color:#fff; font-weight:bold; text-align:center; margin-top:10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
       No result found
@@ -507,18 +49,34 @@
     <div class="hero-content">
       <div class="hero-text">
         <h2>Welcome to Pieces of Kuhu</h2>
+        <div class="hero-robot">
+          <iframe src="https://my.spline.design/genkubgreetingrobot-DbBKK8wJH6LfsqRy3CfVdvgD/" 
+                  frameborder="0"></iframe>
+        </div>
         <p>
-          It’s a collection of reflections, 
-          healing moments, and honest takes on daily life.
-          Here, you’ll find words that speak unfiltered, stories that connect, 
-          and thoughts that go deeper than the surface.
-          My goal is simple: to create a space where curiosity meets clarity, 
-          where you pause, breathe, and see life through a different lens.
+          <em>
+            This isn’t just another corner of the internet.  
+            It’s my journal in disguise, a safe place where I spill the things we often 
+            keep tucked away — the late-night thoughts, the quiet battles, the tiny joys 
+            that never make it to Instagram stories.  
+
+            Here, you’ll find raw honesty stitched with hope.  
+            Stories of healing that remind us we’re all a little broken, yet somehow still whole.  
+            Reflections on daily life — messy, funny, confusing, but real.  
+
+            My dream is to make you feel seen. To give you words you didn’t know you were looking for,  
+            and to create a space where you pause, breathe, and whisper,  
+            “Yes, this is exactly how I feel.” 
+
+            So, welcome. Take what you need. Leave with a lighter heart.  
+          </em>
         </p>
-      </div>
-      <div class="hero-robot">
-        <iframe src="https://my.spline.design/genkubgreetingrobot-DbBKK8wJH6LfsqRy3CfVdvgD/" 
-                frameborder="0"></iframe>
+        <p style="margin-top: 20px; font-size: 1.1em; color: #4a2f2f;">
+          <br>
+          <em>Founder
+            <br>
+            Pieces of Kuhu</em>  
+        </p>
       </div>
     </div>
   </section>
@@ -527,20 +85,32 @@
   <section class="my-journey fade-in" id="my-journey">
     <h2>My Journey</h2>
     <p>
-      From overcoming personal challenges to embracing growth,
-      this is my story of healing, self-discovery, 
-      and finding beauty in little things. 
-      Here, I write to share my heart — the chaos,
-      the calm, and everything in between.
+      Life doesn’t come with a map, and I’m still finding my way through its twists and turns.  
+      Some days feel light and effortless, others heavy and confusing —  
+      yet every moment teaches, nudges, and shapes us.  
+
+      Here, I write about the little things that matter:  
+      the quiet mornings, the laughter that sneaks in, the doubts that linger,  
+      and the tiny victories that make you pause and smile.  
+
+      Connect with me on this journey.  
+      Together we fall, we grow, we explore, and we discover.  
+      Together we notice the hidden pieces of life we often overlook,  
+      and maybe, as you read, you’ll see fragments of your own story reflected in mine.
     </p>
   </section>
 
   <!-- Parallax Section -->
-  <section class="parallax-section" style="height: 300px; background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></section>
+  <section class="parallax-section" style="height: 300px;">
+    <div class="parallax-text">
+      <h2>Explore World From My Perspective</h2>
+      <p>Discover daily chaos and life in depth with me.</p>
+    </div>
+  </section>
 
   <!-- Blog Categories Section -->
   <section class="blog-categories-section fade-in" id="blog-categories">
-    <h2 style="text-align: center;">Blog Categories</h2>
+    <h2>Blog Categories</h2>
     <div class="blog-categories">
       <div class="category-card">
         <h3 class="category-title">Healing</h3>
@@ -582,6 +152,10 @@
             <a href="https://chaosofkuhu.blogspot.com/2025/08/my-daily-chaos-where-i-actually-live.html" data-tooltip="Embracing everyday messiness">My Daily Chaos</a>
             <p>A glimpse into the beautiful messiness of everyday life.</p>
           </li>
+          <li>
+            <a href="https://chaosofkuhu.blogspot.com/2025/09/growing-up-with-68-browser-tabs-open.html" data-tooltip="Embracing everyday messiness">Growing Up with 68 Browser Tabs Open</a>
+            <p>A humorous take on the chaos of modern life and multitasking.</p>
+          </li>
         </ul>
       </div>
       <div class="category-card">
@@ -597,34 +171,39 @@
             <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/pressure-to-have-everything-figured-out.html" data-tooltip="Navigating societal pressures">Pressure to Have Everything Figured Out</a>
             <p>Exploring the societal expectations and personal struggles of having a clear life path.</p>
           </li>
+          <li>
+            <a href="https://deepthoflifewithkuhu.blogspot.com/2025/09/selfish.html" data-tooltip="Examining self-interest">Selfish</a>
+            <p>Exploring the complexities of self-interest and its impact on relationships.</p>
+          </li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <section class="footer-section fade-in" id="contact">
+  <section class="footer-section fade-in" id="connect">
     <div class="footer-block">
       <h3>Blog Categories</h3>
-      <p>Healing<br>Daily life<br>Life analysis</p>
+      <p>Healing<br>Daily Life<br>Life Analysis</p>
     </div>
     <div class="footer-block">
       <h3>Follow Me</h3>
-      <p>
-        <a href="https://www.instagram.com/kuhu_bliss/" target="_blank"><i class="bi bi-instagram"></i></a>
-        <a href="https://twitter.com/your-profile" target="_blank"><i class="bi bi-twitter"></i></a>
+      <p id="connect">
+        <a href="https://www.instagram.com/kuhu_bliss/" target="_blank" class="social-icon"><i class="bi bi-instagram"></i></a>
+        <a href="https://twitter.com/your-profile" target="_blank" class="social-icon"><i class="bi bi-twitter-x"></i></a>
       </p>
       <p>Excited to connect and embark on this journey of personal exploration together.</p>
     </div>
     <div class="footer-block">
-      <h3><a href="https://mail.google.com/mail/?view=cm&fs=1&to=kuhukatarejk1@gmail.com&su=Feedback%20for%20Pieces%20of%20Kuhu" target="_blank" class="footer-btn">Send Feedback</a></h3>
+      <h3>Send Feedback</h3>
       <p>Reach out and I’ll be happy to help!</p>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kuhukatarejk1@gmail.com&su=Feedback%20for%20Pieces%20of%20Kuhu" target="_blank" class="footer-btn">Get in Touch</a>
     </div>
     <div class="footer-block">
       <h3>Stay Updated</h3>
-      <form action="your-newsletter-service" method="post">
-        <input type="email" class="form-control mb-2" placeholder="Enter your email" aria-label="Email for newsletter">
-        <button type="submit" class="btn" style="background: linear-gradient(45deg, #c71585, #dda0dd); color: #fff;" onclick="this.classList.add('bounce')">Subscribe</button>
+      <form action="your-newsletter-service" method="post" class="newsletter-form">
+        <input type="email" placeholder="Enter your email" aria-label="Email for newsletter" required>
+        <button type="submit" class="footer-btn">Subscribe</button>
       </form>
     </div>
   </section>
@@ -636,7 +215,9 @@
   <!-- Back to Top Button -->
   <button class="back-to-top" onclick="scrollToTop()">↑</button>
 
-  <!-- JavaScript -->
+  <!-- Bootstrap JavaScript and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!-- Custom JavaScript -->
   <script>
     (function() {
       const colors = ['#ffe6f0', '#e6e6fa', '#ffd700'];
@@ -680,6 +261,16 @@
           backToTop.classList.remove('show');
         }
       });
+      // Fade-in animations for cards and footer
+      const elements = document.querySelectorAll('.category-card, .blog-list li, .footer-block');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, { threshold: 0.2 });
+      elements.forEach(el => observer.observe(el));
     })();
 
     function searchBlogs(event) {
@@ -707,12 +298,6 @@
       noResultMsg.style.display = anyMatch ? 'none' : 'block';
     }
 
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-      const toggleButton = document.querySelector('.dark-mode-toggle');
-      toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    }
-
     function scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -721,4 +306,4 @@
     }
   </script>
 </body>
-</html> 
+</html>
