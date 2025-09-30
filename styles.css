@@ -310,17 +310,39 @@ nav ul li a.nav-link:hover i {
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Parallax Section */
+/* Parallax Section (Updated for Sunset Image Visibility) */
 .parallax-section {
   position: relative;
-  background-image: linear-gradient(135deg, rgba(255,245,247,0.8), rgba(230,230,250,0.8)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 300px;
+  height: 400px; /* Increased for better visibility */
   z-index: 1;
   transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Gradient Overlay for Parallax */
+.parallax-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,245,247,0.4), rgba(230,230,250,0.4)); /* Reduced opacity */
+  z-index: 0;
+}
+
+/* Fallback for devices that don't support fixed background */
+@supports (-webkit-overflow-scrolling: touch) or (not (background-attachment: fixed)) {
+  .parallax-section {
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+  }
 }
 
 .parallax-text {
@@ -330,6 +352,7 @@ nav ul li a.nav-link:hover i {
   transform: translate(-50%, -50%);
   text-align: center;
   color: #333;
+  z-index: 2; /* Above gradient overlay */
 }
 
 .parallax-text h2 {
@@ -343,12 +366,6 @@ nav ul li a.nav-link:hover i {
 .parallax-text p {
   font-family: 'Poppins', sans-serif;
   font-size: 1.2rem;
-}
-
-@supports (-webkit-overflow-scrolling: touch) {
-  .parallax-section {
-    background-attachment: scroll;
-  }
 }
 
 /* Blog Categories */
@@ -664,6 +681,9 @@ footer {
     line-height: 1.8;
     letter-spacing: 0.03em;
   }
+  .parallax-section {
+    height: 300px; /* Adjusted for smaller screens */
+  }
   .parallax-text h2 {
     font-size: 2em;
   }
@@ -759,6 +779,15 @@ footer {
   .my-journey p {
     font-size: 1.2rem;
     line-height: 1.7;
+  }
+  .parallax-section {
+    height: 250px; /* Adjusted for very small screens */
+  }
+  .parallax-text h2 {
+    font-size: 1.8em;
+  }
+  .parallax-text p {
+    font-size: 0.95em;
   }
   .blog-categories-section h2 {
     font-size: 2em;
